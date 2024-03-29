@@ -1,3 +1,6 @@
+/* Nota: 93.7/100
+Justificativa:  O programa não resolve todas as instâncias do problema.*/
+
 #include <iostream> 
 using namespace std;
 
