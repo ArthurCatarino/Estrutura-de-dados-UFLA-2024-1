@@ -53,7 +53,7 @@ public:
     lista& operator=(const lista& umaLista);  
     // inserção, remoção e procura
     inline void insere(equipe elenco);
-    void Primeirainsercao(equipe elenco)
+    void Primeirainsercao(equipe elenco);
     void insereNoFim(equipe elenco);
     void insereNoInicio(equipe elenco);
     void insereNaPosicao(int posicao, equipe elenco);
@@ -69,8 +69,8 @@ public:
 
 // constrói uma lista inicialmente vazia
 lista::lista() {
-	ultimo = null;
-	primeiro = null;
+	ultimo = nullptr;
+	primeiro = nullptr;
 	tamanho = 0;
 }
 
@@ -87,7 +87,7 @@ lista::~lista( ) { removeTodos();
 // remove todos os elementos da lista
 void lista::removeTodos( ) {
 	
-	while(primeiro != null) {
+	while(primeiro != nullptr) {
 		removeNoFim();
 		}
 }    
@@ -137,7 +137,7 @@ void lista::insereNoInicio(equipe elenco) {
 	else {
 		noh* novo = new noh(elenco);
 		novo = primeiro->proximo;
-		primeiro = novo
+		primeiro = novo;
 		tamanho++;
 	}
 }
@@ -147,14 +147,14 @@ void lista::insereNaPosicao(int posicao, equipe elenco){
 
 	if(tamanho == 0) {Primeirainsercao(elenco);}
 	else if (posicao == tamanho) {insereNoFim(elenco);}
-	else if (posicao == 0) {inserenoinicio(elenco);}
+	else if (posicao == 0) {insereNoInicio(elenco);}
 	else {
 		
 		noh* novo = new noh(elenco);
 		noh* aux = primeiro;
 		int posaux = 0;
 		
-		for(posaux = 0; poraux < posicao -1; posaux++) {
+		for(posaux = 0; posaux < posicao -1; posaux++) {
 			aux = aux->proximo;
 		}
 		
@@ -173,12 +173,12 @@ int lista::procura(string valor) {
     noh* aux = primeiro;
     int cont = 0;
     
-    while(aux->elenco != valor or aux == null) {
+    while(aux->elenco.lider != valor or aux == nullptr) {
 		aux = aux->proximo;
 		cont++;
 	}
 		
-	if(aux != null) 
+	if(aux != nullptr) 
 	return cont;
 	else
 	throw runtime_error("Nao encontrado");
@@ -193,28 +193,23 @@ void lista::imprime() {
         throw runtime_error("Lista vazia!");
     }
     
-    equipe removido;
-    
-    while(primeiro == null) {
-		removido = removeNoInicio();
-     //(Vingadores, Stark, Ruby, 3)
-     cout << "(" << removido.nomeEquipe << ", " << removido.lider << ", " << removido.linguagem << ", " removido.qtdMembros << ")" << endl;
+     //cout << "(" << removido.nomeEquipe << ", " << removido.lider << ", " << removido.linguagem << ", " removido.qtdMembros << ")" << endl;
      
 }
 
 // verifica se a lista está vazia
 inline bool lista::vazia() {
-    return (primeiro == NULL);
+    return (primeiro == nullptr);
 }
    
 void lista::removeNoFim() {
 	
-	if(vazia()) {throw runtime_error("Remoção em lista vazia!")}
+	if(vazia()) {throw runtime_error("Remoção em lista vazia!");}
 	
 	noh* aux = primeiro;
 	noh* temp;
 	
-	for(int i = 0; i < tamanho-1){
+	for(int i = 0; i < tamanho-1;i++){
 		aux = aux->proximo;
 	}
 	
@@ -225,13 +220,13 @@ void lista::removeNoFim() {
 	tamanho--;
 	
 	if(tamanho == 0) {
-		primeiro = null;
-		ultimo = null;
+		primeiro = nullptr;
+		ultimo = nullptr;
 	}
 }
     
 void lista::removeNoInicio() {
-	if(vazia()) {throw runtime_error("Remoção em lista vazia!")}
+	if(vazia()) {throw runtime_error("Remoção em lista vazia!");}
 	
 	noh* temp = primeiro;
 	
@@ -239,8 +234,8 @@ void lista::removeNoInicio() {
 	delete temp;
 	
 	if(tamanho == 0) {
-		primeiro = null;
-		ultimo = null;
+		primeiro = nullptr;
+		ultimo = nullptr;
 	}
 }
 
